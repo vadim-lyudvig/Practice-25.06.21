@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+bool search(string line, string subline)
+{
+    bool found = false;
+    int i = 0;
+    int j;
+    while (i < line.size()) 
+    {
+        if (line[i] == subline[0]) 
+        {
+            found = true;
+            j = 0;
+            while (j < subline.size()) 
+            {
+                if (line[i+j] != subline[j]) 
+               {
+                    found = false;
+                    break; // Выход из while
+                }
+                else
+                {
+                    j++;
+                }
+            }
+            if (found == true)
+            {
+                return found;
+            }
+        }
+        i++;
+    }
+    return found;
+}
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    string line, subline;
+    bool found;
+    cout << "Введите строку, в которой будет осуществляться поиск\n>>> ";
+    getline(cin, line);
+    cout << "Введите подстроку, которую нужно будет найти\n>>> ";
+    getline(cin, subline);
+    found = search(line, subline);
+    cout << (found ? "Искомая подстрока находится в основной строке": "Искомая подстрока не находится в основной строке");
+}
